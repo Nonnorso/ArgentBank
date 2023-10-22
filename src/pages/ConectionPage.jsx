@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function SignIn () {
+    let navigate = useNavigate(); 
+    const click = function () {
+        console.log("click");
+        navigate("/user");
+    }
 
     return ( 
         <main class="main bg-dark">
@@ -17,13 +22,15 @@ export default function SignIn () {
             <input type="password" id="password" />
           </div>
           <div class="input-remember">
-            <input type="checkbox" id="remember-me" /><label for="remember-me"
-              >Remember me
+            <input type="checkbox" id="remember-me" /><label for="remember-me">
+                Remember me
               </label>
           </div>
        
-          <Link to = "/user" class="sign-in-button">Sign In</Link>
-          <button class="sign-in-button">Sign In</button>
+          
+            <button type="button" onClick={click} className="sign-in-button">
+                Sign In
+            </button>
       
         </form>
       </section>
