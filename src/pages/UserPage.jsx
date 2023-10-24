@@ -1,6 +1,6 @@
 import TransactionCard from "../components/TransactionCard"; 
 
-function UserPage() {
+export default function UserPage() {
 
     const username = "Tony Jarvis";
     const transactions = [
@@ -42,8 +42,5 @@ function UserPage() {
                 )
             }
             </main>
-    );
-    
+    );   
 }
-
-export default UserPage
