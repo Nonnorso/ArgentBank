@@ -16,14 +16,10 @@ export default function Header (){
             />
             <h1 class="sr-only">Argent Bank</h1>
         </Link>
-        
         { isConnected 
             ? <UserConnectedNav/> 
             : <UserNotConnectedNav/> 
-        }
-    
-        
+        }  
         </nav>
     )
-
 }
