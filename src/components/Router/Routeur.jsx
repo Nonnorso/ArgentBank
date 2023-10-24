@@ -20,9 +20,6 @@ const Router = createBrowserRouter([
       {
         path: "user",
         element: <UserPage />,
-        // loader: async ({ params }) => {
-        //   return fetch(`/api/v1/user/profile`);
-        // }
       },
       {
         path: "sign-in",

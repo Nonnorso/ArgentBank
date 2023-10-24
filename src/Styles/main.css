@@ -201,6 +201,12 @@ html {
     padding: 5px;
     font-size: 1.2rem;
   }
+
+  .error-message {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: red;
+  }
   
   .footer {
     display: flex;
