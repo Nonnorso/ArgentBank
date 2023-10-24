@@ -39,6 +39,9 @@ export default function Form() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        const token = data.token; 
+        sessionStorage.setItem("authToken", token);
         navigate("/user");
       } else {
         setError("Échec de l'authentification. Vérifiez vos identifiants.");
