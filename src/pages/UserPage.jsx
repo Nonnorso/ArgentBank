@@ -2,29 +2,30 @@ import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard"; 
 
 export default function UserPage() {
+    const token = sessionStorage.getItem("authToken");
 
-//     fetch('http://localhost:3001/api/v1/user/profile', {
-//   method: 'POST',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Authorization': 'Bearer ${token}'
-//   },
-//   body: JSON.stringify({})
-// })
-//   .then(response => response.json())
-//   .then(data => {
-//     if (data.status === 200) {
-//       console.log('Succès : Profil utilisateur récupéré !');
-//      
-//     } else if (data.status === 401) {
-//       console.error('Erreur : Non autorisé. Jeton manquant.');
-//     } else {
-//       console.error('Erreur inattendue.');
-//     }
-//   })
-//   .catch(error => {
-//     console.error('Une erreur s\'est produite :', error);
-//   });
+    fetch('http://localhost:3001/api/v1/user/profile', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({})
+})
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 200) {
+      console.log('Succès : Profil utilisateur récupéré !');
+     
+    } else if (data.status === 401) {
+      console.error('Erreur : Non autorisé. Jeton manquant.');
+    } else {
+      console.error('Erreur inattendue.');
+    }
+  })
+  .catch(error => {
+    console.error('Une erreur s\'est produite :', error);
+  });
 
     const username = "Tony Jarvis"; 
     // replace by fectch
