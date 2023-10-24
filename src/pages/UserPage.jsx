@@ -3,7 +3,7 @@ import TransactionCard from "../components/TransactionCard";
 
 export default function UserPage() {
 
-    // replace by fectch
+    
     const username = "Tony Jarvis"; 
     // replace by fectch
     const transactions = [

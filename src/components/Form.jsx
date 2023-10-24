@@ -38,9 +38,12 @@ export default function Form() {
         }),
       });
 
+      console.log(response);
+
       if (response.ok) {
         const data = await response.json();
-        const token = data.token; 
+        console.log(data);
+        const token = data.body.token; 
         sessionStorage.setItem("authToken", token);
         navigate("/user");
       } else {
