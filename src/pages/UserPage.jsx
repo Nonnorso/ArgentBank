@@ -3,7 +3,9 @@ import TransactionCard from "../components/TransactionCard";
 
 export default function UserPage() {
 
-    const username = "Tony Jarvis";
+    // replace by fectch
+    const username = "Tony Jarvis"; 
+    // replace by fectch
     const transactions = [
         {
             id:'igrigtr205641',
