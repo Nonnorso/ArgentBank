@@ -1,3 +1,4 @@
+import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard"; 
 
 export default function UserPage() {
@@ -28,7 +29,7 @@ export default function UserPage() {
             <main className="main bg-dark">
             <div className="header">
                 <h1>Welcome back<br />{username}!</h1>
-                <button className="edit-button">Edit Name</button>
+                <EditButton/>
             </div>
             <h2 className="sr-only">Accounts</h2>
             {
