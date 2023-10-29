@@ -16,6 +16,13 @@ export default function UserPage() {
   .then(data => {
     if (data.status === 200) {
       console.log('Succès : Profil utilisateur récupéré !');
+      const firstName = data.body.firstName;
+      const lastName = data.body.lastName;
+      const userName = data.body.userName;
+
+      console.log('Prénom :', firstName);
+      console.log('Nom :', lastName);
+      console.log('Nom d\'utilisateur :', userName);
      
     } else if (data.status === 401) {
       console.error('Erreur : Non autorisé. Jeton manquant.');
