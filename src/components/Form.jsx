@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/userActions";
 
-export default function Form() {
+function Form({loginUser}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -17,7 +19,7 @@ export default function Form() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     setError(null);
 
     if (!formData.username || !formData.password) {
@@ -25,33 +27,7 @@ export default function Form() {
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.username,
-          password: formData.password,
-        }),
-      });
-
-      console.log(response);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        const token = data.body.token; 
-        sessionStorage.setItem("authToken", token);
-        navigate("/user");
-      } else {
-        setError("Échec de l'authentification. Vérifiez vos identifiants.");
-      }
-    } catch (error) {
-      setError("Une erreur s'est produite : " + error.message);
-    }
+    loginUser(formData, navigate, setError);
   };
 
   return (
@@ -91,3 +67,5 @@ export default function Form() {
     </section>
   );
 }
+
+export default connect(null, { loginUser })(Form);
