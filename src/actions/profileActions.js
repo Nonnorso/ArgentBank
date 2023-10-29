@@ -16,11 +16,12 @@ export const setUserProfile = (userData) => ({
         });
   
         const data = await response.json();
-        console.log('Data received:', data); 
+        
 
         if (data.status === 200) {
           const { firstName, lastName, userName } = data.body;
           dispatch(setUserProfile({ firstName, lastName, userName }));
+
         } else if (data.status === 401) {
             console.error('ACCESS DENIED !'); 
         } 

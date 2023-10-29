@@ -1,11 +1,17 @@
+import { connect } from 'react-redux';
 import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard";
-import { connect } from 'react-redux'; 
+import { fetchUserProfile } from "../actions/profileActions";
+import React, { useEffect } from 'react';
 
-export function UserPage({transactions}) {  
+export function UserPage({ transactions, fetchUserProfile, username }) {
+    const token = sessionStorage.getItem("authToken");
 
-    const username = "Tony Jarvis"; 
-    // replace by fectch
+    useEffect(() => {
+      if (token) {
+        fetchUserProfile(token);
+      }
+    }, [fetchUserProfile, token]);
     
     return (
             <main className="main bg-dark">
@@ -30,8 +36,13 @@ export function UserPage({transactions}) {
 
 const mapStateToProps = state => {
     return {
-        transactions: state.transactions.transactions
+        transactions: state.transactions.transactions,
+        username: state.profile.userProfile.userName
     };
 };
 
-export default connect(mapStateToProps)(UserPage);
+const mapDispatchToProps = {
+  fetchUserProfile
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
