@@ -1,10 +1,12 @@
 import { combineReducers } from "redux"
 import featureReducer from "../reducers/featuresReducer";
 import userReducer from '../reducers/useReducer';
+import transactionsReducer from "../reducers/transactionsReducer";
 
 
 export default combineReducers ({
 
  features: featureReducer,
-user: userReducer,
+ transactions : transactionsReducer,
+ user: userReducer,
 });

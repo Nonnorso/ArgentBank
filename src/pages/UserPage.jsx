@@ -1,7 +1,8 @@
 import EditButton from "../components/EditButton";
-import TransactionCard from "../components/TransactionCard"; 
+import TransactionCard from "../components/TransactionCard";
+import { connect } from 'react-redux'; 
 
-export default function UserPage() {
+export function UserPage({transactions}) {
     const token = sessionStorage.getItem("authToken");
 
     fetch('http://localhost:3001/api/v1/user/profile', {
@@ -36,26 +37,6 @@ export default function UserPage() {
 
     const username = "Tony Jarvis"; 
     // replace by fectch
-    const transactions = [
-        {
-            id:'igrigtr205641',
-            title: 'Argent Bank Checking (x8349)',
-            description: 'Available Balance',
-            amount: '$2,082.79'
-        },
-        {
-            id:'igrigtr2056ee',
-            title: 'Argent Bank Savings (x6712)',
-            description: 'Available Balance',
-            amount: '$10,928.42'
-        },
-        {
-            id:'igrigtr205ff',
-            title: 'Argent Bank Credit Card (x8349)',
-            description: 'Current Balance',
-            amount: '$184.30'
-        },
-    ]
     
     return (
             <main className="main bg-dark">
@@ -77,3 +58,11 @@ export default function UserPage() {
             </main>
     );   
 }
+
+const mapStateToProps = state => {
+    return {
+        transactions: state.transactions.transactions
+    };
+};
+
+export default connect(mapStateToProps)(UserPage);

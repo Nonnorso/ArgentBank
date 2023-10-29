@@ -1,17 +1,26 @@
-export default function TransactionCard ({title, amount, description}) {
+import { connect } from 'react-redux';
 
-    return( 
-        <section className="account">
-        <div className="account-content-wrapper">
-          <h3 className="account-title">{title}</h3>
-          <p className="account-amount">{amount}</p>
-          <p className="account-amount-description">{description}</p>
-        </div>
-        <div className="account-content-wrapper cta">
-          <button className="transaction-button">
-            View transactions
-          </button>
-        </div>
-      </section>
-    )
-} 
+const TransactionCard = ({ title, amount, description }) => {
+  return (
+    <section className="account">
+      <div className="account-content-wrapper">
+        <h3 className="account-title">{title}</h3>
+        <p className="account-amount">{amount}</p>
+        <p className="account-amount-description">{description}</p>
+      </div>
+      <div className="account-content-wrapper cta">
+        <button className="transaction-button">
+          View transactions
+        </button>
+      </div>
+    </section>
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    transactions: state.transactions.transactions 
+  };
+};
+
+export default connect(mapStateToProps)(TransactionCard);

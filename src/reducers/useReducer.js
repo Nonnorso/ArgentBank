@@ -1,5 +1,5 @@
 const initialState = {
-    loggedIn: false,
+    loggedIn: !!sessionStorage.getItem("authToken"),
     error: null,
   };
   
