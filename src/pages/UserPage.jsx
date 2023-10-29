@@ -2,38 +2,7 @@ import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard";
 import { connect } from 'react-redux'; 
 
-export function UserPage({transactions}) {
-    const token = sessionStorage.getItem("authToken");
-
-    fetch('http://localhost:3001/api/v1/user/profile', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-  body: JSON.stringify({})
-})
-  .then(response => response.json())
-  .then(data => {
-    if (data.status === 200) {
-      console.log('Succès : Profil utilisateur récupéré !');
-      const firstName = data.body.firstName;
-      const lastName = data.body.lastName;
-      const userName = data.body.userName;
-
-      console.log('Prénom :', firstName);
-      console.log('Nom :', lastName);
-      console.log('Nom d\'utilisateur :', userName);
-     
-    } else if (data.status === 401) {
-      console.error('Erreur : Non autorisé. Jeton manquant.');
-    } else {
-      console.error('Erreur inattendue.');
-    }
-  })
-  .catch(error => {
-    console.error('Une erreur s\'est produite :', error);
-  });
+export function UserPage({transactions}) {  
 
     const username = "Tony Jarvis"; 
     // replace by fectch
