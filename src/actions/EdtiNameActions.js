@@ -1,4 +1,4 @@
-export const updateUserProfile = (userData) => {
+export const updateUserProfile = (userData, token) => {
     return async (dispatch) => {
       try {
         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
@@ -6,6 +6,7 @@ export const updateUserProfile = (userData) => {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify(userData)
         });
