@@ -17,14 +17,17 @@ export const loginUser = (formData, navigate, setError) => {
           const data = await response.json();
           const token = data.body.token;
           sessionStorage.setItem("authToken", token);
+          dispatch({ type: 'LOGIN_SUCCESS' });
           navigate("/user");
 
         } else {
           setError("Échec de l'authentification. Vérifiez vos identifiants.");
+          dispatch({ type: 'LOGIN_FAILURE' });
         }
         
       } catch (error) {
         setError("Une erreur s'est produite : " + error.message);
+        dispatch({ type: 'LOGIN_ERROR', payload: error.message });
       }
     };
   };
