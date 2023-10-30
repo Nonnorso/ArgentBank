@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux';
+import { fetchUserProfile } from '../../actions/profileActions'
 import { Link } from "react-router-dom";
 import UserConnectedNav from "./UserConnectedNav";
 import UserNotConnectedNav from "./UserNotConnectedNav";
 
-export default function Header() {
-    const [isConnected, setIsConnected] = useState(false);
+const Header = ({ userName, fetchUserProfile }) => {
   
     useEffect(() => {
-      const authToken = sessionStorage.getItem("authToken");
-      setIsConnected(authToken !== null);
-    }, []);
+      const authToken = sessionStorage.getItem('authToken');
+      if (authToken && !userName) {
+        fetchUserProfile(authToken);
+      }
+    }, [fetchUserProfile, userName]);
   
     return (
       <nav className="main-nav">
@@ -21,7 +24,19 @@ export default function Header() {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
-        {isConnected ? <UserConnectedNav /> : <UserNotConnectedNav />}
+        {userName ? <UserConnectedNav /> : <UserNotConnectedNav />}
       </nav>
     );
   }
+
+  const mapStateToProps = state => {
+    return {
+      userName: state.profile.userProfile.userName
+    };
+  };
+  
+  const mapDispatchToProps = {
+    fetchUserProfile
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Header);
