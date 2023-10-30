@@ -1,12 +1,11 @@
 import React from "react";
-import {
-  createBrowserRouter,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../../pages/HomePage";
 import UserPage from "../../pages/UserPage";
 import Layout from "../Layout";
 import SignIn from "../../pages/ConectionPage";
 import Error404 from "../../pages/Error404";
+import { ProtectedRoute } from "../ProtectedRoute";
 
 const Router = createBrowserRouter([
   {
@@ -19,7 +18,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "user",
-        element: <UserPage />,
+        element: (
+          <ProtectedRoute>
+            <UserPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "sign-in",

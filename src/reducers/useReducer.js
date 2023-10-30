@@ -11,7 +11,6 @@ const initialState = {
         return { ...state, error: "Échec de l'authentification. Vérifiez vos identifiants." };
       case 'LOGIN_ERROR':
         return { ...state, error: action.payload };
-      // ... Autres cas d'action si nécessaire
       default:
         return state;
     }
