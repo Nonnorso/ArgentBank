@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { updateUserProfile } from '../actions/EdtiNameActions'
 
-export default function EditButton({ userProfile, token }) {
+
+function EditButton({ userProfile,token, updateUserProfile }) {
     const [showForm, setShowForm] = useState(false);
     const [userData, setUserData] = useState({
         userName: '',
@@ -22,7 +25,9 @@ export default function EditButton({ userProfile, token }) {
         setShowForm(!showForm);
     };
 
-    const handleSave = () => {
+    const handleSave = (e) => {
+        e.preventDefault(); 
+        updateUserProfile(userData, token);
         setShowForm(false);
     };
 
@@ -66,3 +71,9 @@ export default function EditButton({ userProfile, token }) {
         </div>
     );
 }
+
+const mapDispatchToProps = {
+    updateUserProfile,
+  };
+  
+  export default connect(null, mapDispatchToProps)(EditButton);
