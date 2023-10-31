@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUserProfile } from '../actions/EdtiNameActions'
 import { fetchUserProfile } from '../actions/profileActions';
+import '../Styles/editButton.css'
 
 
 function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile }) {
@@ -49,22 +50,22 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
     return (
         <div>
             {showForm ? (
-                <div className='editButton_container'>
+                <div className='editForm_container'>
                     <form className='editForm'>
-                        <h1 className='editFormTitle'>Edit user info</h1>
-                        <div className="editFormItems">
+                        <h2>Edit user info</h2>
+                        <div>
                             <label htmlFor="userName">User Name : </label>
                             <input type="text" id='userName' value={userData.userName} onChange={(e) => setUserData({ ...userData, userName: e.target.value })}  />
                         </div>
-                        <div className="editionItems">
+                        <div>
                             <label htmlFor="firstName">First Name : </label>
                             <input type="text" id='firstName' placeholder="firstName" value={userData.firstName} onChange={(e) => setUserData({ ...userData, firstName: e.target.value })} disabled />
                         </div>
-                        <div className="editItems">
+                        <div>
                             <label htmlFor="lastName">Last Name : </label>
                             <input type="text" id='lastName' placeholder="lastName" value={userData.lastName} onChange={(e) => setUserData({ ...userData, lastName: e.target.value })} disabled />
                         </div>
-                        <div className="editSaveButton">
+                        <div className='editFormButton_container'>
                             <button type='submit' className='editFormButton' onClick={handleSave}>
                                 Save
                             </button>

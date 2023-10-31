@@ -4,7 +4,7 @@ import TransactionCard from "../components/TransactionCard";
 import { fetchUserProfile } from "../actions/profileActions";
 import React, { useEffect } from 'react';
 
-export function UserPage({ transactions, fetchUserProfile, username, userProfile, updateUsername }) {
+export function UserPage({ transactions, fetchUserProfile, firstName, lastName, userProfile, updateUsername }) {
     const token = sessionStorage.getItem("authToken");
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export function UserPage({ transactions, fetchUserProfile, username, userProfile
     return (
             <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />{username}!</h1>
+                <h1>Welcome back<br />{firstName} {lastName} !</h1>
                 <EditButton userProfile={userProfile} token={token} />
             </div>
             <h2 className="sr-only">Accounts</h2>
@@ -39,6 +39,8 @@ const mapStateToProps = state => {
         transactions: state.transactions.transactions,
         username: state.profile.userProfile.userName,
         userProfile: state.profile.userProfile,
+        firstName: state.profile.userProfile.firstName,
+        lastName: state.profile.userProfile.lastName,
         token: sessionStorage.getItem("authToken")
     };
 };
