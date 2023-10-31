@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUserProfile } from '../actions/EdtiNameActions'
+import { fetchUserProfile } from '../actions/profileActions';
 
 
-function EditButton({ userProfile,token, updateUserProfile }) {
+function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile }) {
     const [showForm, setShowForm] = useState(false);
     const [userData, setUserData] = useState({
         userName: '',
@@ -25,10 +26,14 @@ function EditButton({ userProfile,token, updateUserProfile }) {
         setShowForm(!showForm);
     };
 
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         e.preventDefault(); 
-        updateUserProfile(userData, token);
+        await updateUserProfile(userData, token);
         setShowForm(false);
+
+        if (token && fetchUserProfile) {
+            fetchUserProfile(token);
+        }
     };
 
     const handleCancel = () => {
@@ -72,8 +77,11 @@ function EditButton({ userProfile,token, updateUserProfile }) {
     );
 }
 
-const mapDispatchToProps = {
-    updateUserProfile,
-  };
-  
-  export default connect(null, mapDispatchToProps)(EditButton);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateUserProfile: (userData, token) => dispatch(updateUserProfile(userData, token)),
+        fetchUserProfile: (token) => dispatch(fetchUserProfile(token))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(EditButton);

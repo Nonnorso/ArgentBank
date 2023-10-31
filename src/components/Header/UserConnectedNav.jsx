@@ -9,7 +9,7 @@ const UserConnectedNav = ({ userName, fetchUserProfile }) => {
     if (token) {
       fetchUserProfile(token);
     }
-  }, [fetchUserProfile]);
+  }, [fetchUserProfile, userName]);
 
   const handleSignOut = () => {
     sessionStorage.removeItem("authToken");

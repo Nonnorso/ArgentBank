@@ -14,7 +14,7 @@ export const updateUserProfile = (userData, token) => {
         const data = await response.json();
   
         if (response.ok) {
-          dispatch({ type: 'UPDATE_USER_PROFILE_SUCCESS', payload: data.body });
+          dispatch({ type: 'UPDATE_USERNAME', payload: userData.userName });
         } else {
           dispatch({ type: 'UPDATE_USER_PROFILE_FAILURE', payload: data.message });
         }

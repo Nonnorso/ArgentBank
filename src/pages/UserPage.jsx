@@ -4,14 +4,14 @@ import TransactionCard from "../components/TransactionCard";
 import { fetchUserProfile } from "../actions/profileActions";
 import React, { useEffect } from 'react';
 
-export function UserPage({ transactions, fetchUserProfile, username, userProfile }) {
+export function UserPage({ transactions, fetchUserProfile, username, userProfile, updateUsername }) {
     const token = sessionStorage.getItem("authToken");
 
     useEffect(() => {
       if (token) {
         fetchUserProfile(token);
       }
-    }, [fetchUserProfile, token]);
+    }, [fetchUserProfile, token, updateUsername]);
     
     return (
             <main className="main bg-dark">
@@ -44,7 +44,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  fetchUserProfile
+  fetchUserProfile,
+  updateUsername: (newUsername) => ({ type: 'UPDATE_USERNAME', payload: newUsername })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

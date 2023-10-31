@@ -1,15 +1,17 @@
 const initialState = {
-    userProfile: {},
+    userProfile: {userName: ''},
     error: null
   };
   
   const editNameReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'UPDATE_USER_PROFILE_SUCCESS':
+      case 'UPDATE_USERNAME':
         return {
-          ...state,
-          userProfile: action.payload,
-          error: null
+            ...state,
+            userProfile: {
+                ...state.userProfile.action,
+                userName: action.payload
+            }
         };
       case 'UPDATE_USER_PROFILE_FAILURE':
         return {
