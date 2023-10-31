@@ -16,11 +16,13 @@ const store = configureStore({
 })
 
 root.render(
-  <Provider store= {store}>
+  
   <React.StrictMode>
-    <RouterProvider router={Router} />
+    <Provider store= {store}>
+      <RouterProvider router={Router} /> 
+    </Provider>
   </React.StrictMode>
-  </Provider>
+ 
 );
 
 // If you want to start measuring performance in your app, pass a function

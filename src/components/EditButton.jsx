@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function EditButton() {
+export default function EditButton({ userProfile, token }) {
     const [showForm, setShowForm] = useState(false);
 
     const toggleForm = () => {
