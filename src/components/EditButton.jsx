@@ -36,7 +36,8 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
         }
     };
 
-    const handleCancel = () => {
+    const handleCancel = (e) => {
+        e.preventDefault();
         setShowForm(false);
         setUserData({
             userName: userProfile.userName,
