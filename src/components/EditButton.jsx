@@ -38,6 +38,11 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
 
     const handleCancel = () => {
         setShowForm(false);
+        setUserData({
+            userName: userProfile.userName,
+            firstName: userProfile.firstName,
+            lastName: userProfile.lastName
+        });
     };
 
     return (
