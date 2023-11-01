@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/userActions";
+import RememberMe from "../components/RememberMe";
 
 function Form({loginUser}) {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Form({loginUser}) {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +19,10 @@ function Form({loginUser}) {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked);
   };
 
   const handleSubmit = () => {
@@ -28,6 +34,7 @@ function Form({loginUser}) {
     }
 
     loginUser(formData, navigate, setError);
+    RememberMe(formData, rememberMe);
   };
 
   return (
@@ -56,7 +63,10 @@ function Form({loginUser}) {
           />
         </div>
         <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
+          <input type="checkbox" 
+          id="remember-me" 
+          checked={rememberMe}
+          onChange={handleRememberMeChange}/>
           <label htmlFor="remember-me">Remember me</label>
         </div>
         {error && <div className="error-message">{error}</div>}
