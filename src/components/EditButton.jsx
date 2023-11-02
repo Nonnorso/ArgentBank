@@ -13,6 +13,8 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
         lastName: ''
     });
 
+    const [error, setError] = useState('');
+
     useEffect(() => {
         if (userProfile) {
             setUserData({
@@ -29,6 +31,21 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
 
     const handleSave = async (e) => {
         e.preventDefault(); 
+
+        if (userData.userName === '' || userData.userName.length < 3) {
+            setError("Le nom d'utilisateur doit comporter au moins 3 caractères.");
+            return;
+        }
+
+        const firstChar = userData.userName.charAt(0);
+
+        if (firstChar !== firstChar.toUpperCase()) {
+            setError("Le nom d'utilisateur doit commencer par une majuscule.");
+            return;
+        }   
+
+        setError('');
+
         await updateUserProfile(userData, token);
         setShowForm(false);
 
@@ -55,7 +72,13 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
                         <h2>Edit user info</h2>
                         <div>
                             <label htmlFor="userName">User Name : </label>
-                            <input type="text" id='userName' value={userData.userName} onChange={(e) => setUserData({ ...userData, userName: e.target.value })}  />
+                            <input 
+                            type="text" 
+                            id='userName' 
+                            value={userData.userName} 
+                            onChange={(e) => 
+                            setUserData({ ...userData, userName: e.target.value })} />
+                            {error && <p className="error-message">{error}</p>}
                         </div>
                         <div>
                             <label htmlFor="firstName">First Name : </label>
