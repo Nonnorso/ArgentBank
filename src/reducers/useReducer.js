@@ -11,7 +11,10 @@ const initialState = {
         return { ...state, error: "Échec de l'authentification. Vérifiez vos identifiants." };
       case 'LOGIN_ERROR':
         return { ...state, error: action.payload };
-      default:
+      case 'LOGOUT':
+        sessionStorage.removeItem("authToken");
+        return { loggedIn: false, error: null };
+    default:
         return state;
     }
   };

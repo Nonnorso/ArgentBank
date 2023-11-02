@@ -17,13 +17,16 @@ export const setUserProfile = (userData) => ({
   
         const data = await response.json();
         
-
         if (data.status === 200) {
           const { firstName, lastName, userName } = data.body;
           dispatch(setUserProfile({ firstName, lastName, userName }));
 
         } else if (data.status === 401) {
-            console.error('ACCESS DENIED !'); 
+            console.error('ACCESS DENIED !');
+            sessionStorage.removeItem("authToken");
+            sessionStorage.removeItem("username");
+            sessionStorage.removeItem("password");
+            dispatch({ type: 'LOGOUT' }); 
         } 
         
         else {

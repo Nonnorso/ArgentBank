@@ -3,15 +3,19 @@ import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard";
 import { fetchUserProfile } from "../actions/profileActions";
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function UserPage({ transactions, fetchUserProfile, firstName, lastName, userProfile, updateUsername }) {
-    const token = sessionStorage.getItem("authToken");
+export function UserPage({ token, transactions, fetchUserProfile, firstName, lastName, userProfile, updateUsername }) {
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      if (token) {
+  useEffect(() => {
+    if (!token) {
+        navigate('/sign-in');
+    } else {
         fetchUserProfile(token);
-      }
-    }, [fetchUserProfile, token, updateUsername]);
+    }
+}, [fetchUserProfile, token, navigate]);
+
     
     return (
             <main className="main bg-dark">
