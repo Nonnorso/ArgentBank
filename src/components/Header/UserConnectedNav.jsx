@@ -13,6 +13,8 @@ const UserConnectedNav = ({ userName, fetchUserProfile }) => {
 
   const handleSignOut = () => {
     sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("password");
     window.location.href = "/";
   };
 
