@@ -8,7 +8,7 @@ export function InfoCard({featuresData}) {
       <h2 className="sr-only">Features</h2>
       {featuresData.map((feature, index) => (
         <div className="feature-item" key={index}>
-          <img src={feature.icon} alt="Chat Icon" className="feature-icon" />
+          <img src={process.env.PUBLIC_URL + feature.icon} alt="Chat Icon" className="feature-icon" />
           <h3 className="feature-item-title">{feature.title}</h3>
           <p>{feature.description}</p>
         </div>
