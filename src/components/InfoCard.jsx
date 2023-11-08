@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../Styles/infoCard.css'
 
 export function InfoCard({featuresData}) {
   return (

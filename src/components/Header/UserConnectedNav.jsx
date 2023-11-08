@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUserProfile } from "../../actions/profileActions";
+import '../../Styles/header.css'
 
 const UserConnectedNav = ({ userName, fetchUserProfile }) => {
   useEffect(() => {

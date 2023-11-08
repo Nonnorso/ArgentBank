@@ -4,6 +4,7 @@ import { fetchUserProfile } from '../../actions/profileActions'
 import { Link } from "react-router-dom";
 import UserConnectedNav from "./UserConnectedNav";
 import UserNotConnectedNav from "./UserNotConnectedNav";
+import '../../Styles/header.css'
 
 const Header = ({ userName, fetchUserProfile }) => {
   

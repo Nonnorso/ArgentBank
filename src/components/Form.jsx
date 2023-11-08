@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/userActions";
 import RememberMe from "../components/RememberMe";
+import '../Styles/form.css'
 
 function Form({loginUser}) {
   const navigate = useNavigate();

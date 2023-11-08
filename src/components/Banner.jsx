@@ -1,3 +1,5 @@
+import '../Styles/banner.css'
+
 export default function Banner () {
 
     return(

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import '../Styles/transactionCard.css'
 
 const TransactionCard = ({ title, amount, description }) => {
   return (
