@@ -5,7 +5,7 @@ export default function UserNotConnectedNav() {
     return (
         <div>
           <Link className="main-nav-item" to="./sign-in">
-            <i className="fa fa-user-circle"></i>Sign In
+            <i className="fa fa-user-circle"></i> Sign In
           </Link>
       </div>
     );
