@@ -2,10 +2,19 @@ import { connect } from 'react-redux';
 import EditButton from "../components/EditButton";
 import TransactionCard from "../components/TransactionCard";
 import { fetchUserProfile } from "../actions/profileActions";
+import { updateUserProfile } from "../actions/EdtiNameActions";
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function UserPage({ token, transactions, fetchUserProfile, firstName, lastName, userProfile, updateUsername }) {
+export function UserPage({ 
+    token, 
+    transactions, 
+    fetchUserProfile, 
+    firstName, 
+    lastName, 
+    userProfile, 
+    updateUsername,
+    updateUserProfile, }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,12 +25,21 @@ export function UserPage({ token, transactions, fetchUserProfile, firstName, las
     }
 }, [fetchUserProfile, token, navigate]);
 
+    const handleUpdateUserProfile = async (userData) => {
+        await updateUserProfile(userData, token);
+        if (token) {
+        fetchUserProfile(token);
+        }
+    };
     
     return (
             <main className="main bg-dark">
             <div className="header">
                 <h1>Welcome back<br />{firstName} {lastName} !</h1>
-                <EditButton userProfile={userProfile} token={token} />
+                <EditButton 
+                userProfile={userProfile} 
+                token={token}
+                onUpdateUserProfile={handleUpdateUserProfile} />
             </div>
             <h2 className="sr-only">Accounts</h2>
             {
@@ -51,7 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   fetchUserProfile,
-  updateUsername: (newUsername) => ({ type: 'UPDATE_USERNAME', payload: newUsername })
+  updateUsername: (newUsername) => ({ type: 'UPDATE_USERNAME', payload: newUsername }),
+  updateUserProfile,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

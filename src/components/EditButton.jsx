@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { updateUserProfile } from '../actions/EdtiNameActions'
-import { fetchUserProfile } from '../actions/profileActions';
 import '../Styles/editButton.css'
 
 
-function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile }) {
+function EditButton({ userProfile, token, fetchUserProfile, onUpdateUserProfile }) {
     const [showForm, setShowForm] = useState(false);
     const [userData, setUserData] = useState({
         userName: '',
@@ -46,7 +43,7 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
 
         setError('');
 
-        await updateUserProfile(userData, token);
+        await onUpdateUserProfile(userData, token);
         setShowForm(false);
 
         if (token && fetchUserProfile) {
@@ -107,11 +104,4 @@ function EditButton({ userProfile, token, fetchUserProfile, updateUserProfile })
     );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        updateUserProfile: (userData, token) => dispatch(updateUserProfile(userData, token)),
-        fetchUserProfile: (token) => dispatch(fetchUserProfile(token))
-    };
-};
-
-export default connect(null, mapDispatchToProps)(EditButton);
+export default EditButton;
