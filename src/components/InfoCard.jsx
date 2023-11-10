@@ -1,26 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import '../Styles/infoCard.css'
+import '../Styles/infoCard.css';
 
-export function InfoCard({featuresData}) {
+export default function InfoCard({ featuresData }) {
   return (
     <section className="features">
       <h2 className="sr-only">Features</h2>
-      {featuresData.map((feature, index) => (
+      {featuresData.map(({ icon, title, description }, index) => (
         <div className="feature-item" key={index}>
-          <img src={process.env.PUBLIC_URL + feature.icon} alt="Chat Icon" className="feature-icon" />
-          <h3 className="feature-item-title">{feature.title}</h3>
-          <p>{feature.description}</p>
+          <img src={process.env.PUBLIC_URL + icon} alt="Chat Icon" className="feature-icon" />
+          <h3 className="feature-item-title">{title}</h3>
+          <p>{description}</p>
         </div>
       ))}
     </section>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    featuresData: state.features.featuresData,
-  };
-};
-
-export default connect (mapStateToProps)(InfoCard);

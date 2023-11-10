@@ -1,5 +1,5 @@
 import Banner from "../components/Banner";
-import InfoCard from "../components/InfoCard";
+import Card from "../Structures/Card";
 
 
 function HomePage() {
@@ -7,7 +7,7 @@ function HomePage() {
     <>
   <main>
     <Banner/>
-    <InfoCard/>
+    <Card/>
   </main>
   </>
   );
