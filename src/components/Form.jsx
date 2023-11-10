@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/userActions";
-import RememberMe from "../components/RememberMe";
 import '../Styles/form.css'
 
 function Form({loginUser}) {
@@ -26,6 +25,16 @@ function Form({loginUser}) {
     setRememberMe(e.target.checked);
   };
 
+  const handleRememberMe = () => {
+    if (rememberMe) {
+      sessionStorage.setItem('username', formData.username);
+      sessionStorage.setItem('password', formData.password);
+    } else {
+      sessionStorage.removeItem('username');
+      sessionStorage.removeItem('password');
+    }
+  };
+
   const handleSubmit = () => {
     setError(null);
 
@@ -35,7 +44,7 @@ function Form({loginUser}) {
     }
 
     loginUser(formData, navigate, setError);
-    RememberMe(formData, rememberMe);
+    handleRememberMe();
   };
 
   return (

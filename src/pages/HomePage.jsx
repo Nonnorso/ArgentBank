@@ -1,16 +1,30 @@
-import Banner from "../components/Banner";
-import Card from "../Structures/Card";
+import React from 'react';
+import { connect } from 'react-redux';
+import Banner from '../components/Banner';
+import InfoCard from '../components/InfoCard';
 
+function HomePage({ featuresData }) {
+  const mappedFeatures = featuresData.map((feature, index) => ({
+    key: index,
+    icon: process.env.PUBLIC_URL + feature.icon,
+    title: feature.title,
+    description: feature.description,
+  }));
 
-function HomePage() {
   return (
     <>
-  <main>
-    <Banner/>
-    <Card/>
-  </main>
-  </>
+      <main>
+        <Banner />
+        <InfoCard featuresData={mappedFeatures} />
+      </main>
+    </>
   );
 }
 
-export default HomePage
+const mapStateToProps = (state) => {
+  return {
+    featuresData: state.features.featuresData,
+  };
+};
+
+export default connect(mapStateToProps)(HomePage);
