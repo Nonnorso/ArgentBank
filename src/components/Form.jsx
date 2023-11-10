@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { loginUser } from "../actions/userActions";
 import '../Styles/form.css'
 
-function Form({loginUser}) {
+function Form({loginUser, loggedIn}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -88,4 +86,4 @@ function Form({loginUser}) {
   );
 }
 
-export default connect(null, { loginUser })(Form);
+export default Form;
