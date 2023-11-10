@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import '../Styles/transactionCard.css'
 
 const TransactionCard = ({ title, amount, description }) => {
@@ -18,10 +17,4 @@ const TransactionCard = ({ title, amount, description }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    transactions: state.transactions.transactions 
-  };
-};
-
-export default connect(mapStateToProps)(TransactionCard);
+export default TransactionCard;
